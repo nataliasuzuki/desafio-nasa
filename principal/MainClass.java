@@ -31,32 +31,39 @@ public class MainClass
 			  System.out.println(i);
 		}
 	    
-	    int tamLista = listaItens.size();
-	    int[] novaOrdem = new int[tamLista];
+	    System.out.println("\nDigite o número de integrantes: ");
+	    Scanner sc = new Scanner(System.in);
+		Integer qntdPes = Integer.valueOf(sc.nextLine());
 		
-		System.out.println("\nDigite a nova ordem desejada separado por virgulas, exemplo: 15, 14, 13, 1, 7, ...\n");
-		Scanner sc = new Scanner(System.in);
-		String ordemDesejada = sc.nextLine();
-		String[] ordemArray = ordemDesejada.split(",");
-		
-		int temp = 0;
-		for(String aux : ordemArray)
+		for(int q = 0; q < qntdPes; q++)
 		{
-			Integer i = Integer.parseInt(aux);  
-			novaOrdem[temp] = i;
-			temp++;
-		}
-		
-		List<String> novaLista = new ArrayList<String>();
-		for (int k : novaOrdem) 
-		{
-			 novaLista.add(listaItens.get(k));
-		}
-        
-		System.out.println("\nNova ordem");
-		for(String n : novaLista)
-		{
-			System.out.println(n);
+		    int tamLista = listaItens.size();
+		    int[] novaOrdem = new int[tamLista];
+			int nmr = q+1;
+			System.out.println("\nIntegrante " + nmr + ", digite a nova ordem desejada separado por virgulas, exemplo: 3, 1, 2");
+			Scanner sc2 = new Scanner(System.in);
+			String ordemDesejada = sc2.nextLine();
+			String[] ordemArray = ordemDesejada.split(",");
+			
+			int temp = 0;
+			for(String aux : ordemArray)
+			{
+				Integer i = Integer.parseInt(aux);  
+				novaOrdem[temp] = i;
+				temp++;
+			}
+			
+			List<String> novaLista = new ArrayList<String>();
+			for (int k : novaOrdem) 
+			{
+				 novaLista.add(listaItens.get(k));
+			}
+	        
+			System.out.println("\nOrdem do integrante " + nmr);
+			for(String n : novaLista)
+			{
+				System.out.println(n);
+			}
 		}
 		
 	}  
