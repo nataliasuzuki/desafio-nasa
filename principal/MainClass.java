@@ -36,7 +36,6 @@ public class MainClass
 		Integer qntdPes = Integer.valueOf(sc.nextLine());
 		int tamLista = listaItens.size();
 		int[] somaPrioridades = new int[tamLista];
-		Boolean unicaVez = true;
 		
 		for(int q = 0; q < qntdPes; q++)
 		{
@@ -61,23 +60,14 @@ public class MainClass
 				 novaLista.add(listaItens.get(k));
 			}
 			
-			//Cálculo diferença pessoal somente do integrante 01
-			if(unicaVez)
-			{
-				System.out.println("\nDiferença pessoal do integrante 01: ");
-			}
-
+			System.out.println("\nDiferença pessoal do integrante " + nmr + ":");
 			int diffInt01 = 0;
 			for (int l : listaItens.keySet()) 
 			{
 				diffInt01 = l - novaOrdem[l-1];
-				if(unicaVez)
-				{
-					System.out.print(diffInt01 + ", ");
-				}
+				System.out.print(diffInt01 + ", ");
 				somaPrioridades[l-1] = novaOrdem[l-1] + somaPrioridades[l-1];
 			}
-			unicaVez = false;
 			
 			System.out.println("\n\nOrdem do integrante " + nmr);
 			for(String n : novaLista)
