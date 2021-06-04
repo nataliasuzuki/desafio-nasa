@@ -34,10 +34,12 @@ public class MainClass
 	    System.out.println("\nDigite o número de integrantes: ");
 	    Scanner sc = new Scanner(System.in);
 		Integer qntdPes = Integer.valueOf(sc.nextLine());
+		int tamLista = listaItens.size();
+		int[] somaPrioridades = new int[tamLista];
+		Boolean unicaVez = true;
 		
 		for(int q = 0; q < qntdPes; q++)
 		{
-		    int tamLista = listaItens.size();
 		    int[] novaOrdem = new int[tamLista];
 			int nmr = q+1;
 			System.out.println("\nIntegrante " + nmr + ", digite a nova ordem desejada separado por virgulas, exemplo: 3, 1, 2");
@@ -58,13 +60,37 @@ public class MainClass
 			{
 				 novaLista.add(listaItens.get(k));
 			}
-	        
-			System.out.println("\nOrdem do integrante " + nmr);
+			
+			//Cálculo diferença pessoal somente do integrante 01
+			if(unicaVez)
+			{
+				System.out.println("\nDiferença pessoal do integrante 01: ");
+			}
+
+			int diffInt01 = 0;
+			for (int l : listaItens.keySet()) 
+			{
+				diffInt01 = l - novaOrdem[l-1];
+				if(unicaVez)
+				{
+					System.out.print(diffInt01 + ", ");
+				}
+				somaPrioridades[l-1] = novaOrdem[l-1] + somaPrioridades[l-1];
+			}
+			unicaVez = false;
+			
+			System.out.println("\n\nOrdem do integrante " + nmr);
 			for(String n : novaLista)
 			{
 				System.out.println(n);
 			}
 		}
 		
+		System.out.println("\nDiferença do grupo: ");
+		for(int l : listaItens.keySet())
+		{
+			somaPrioridades[l-1] = somaPrioridades[l-1] - l;
+			System.out.print(somaPrioridades[l-1] + ", ");
+		}
 	}  
 }  
