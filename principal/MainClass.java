@@ -36,6 +36,7 @@ public class MainClass
 		Integer qntdPes = Integer.valueOf(sc.nextLine());
 		int tamLista = listaItens.size();
 		int[] somaPrioridades = new int[tamLista];
+		String[][] tableData = new String[3][3]; //linha x coluna
 		
 		for(int q = 0; q < qntdPes; q++)
 		{
@@ -60,14 +61,18 @@ public class MainClass
 				 novaLista.add(listaItens.get(k));
 			}
 			
-			System.out.println("\nDiferença pessoal do integrante " + nmr + ":");
-			int diffInt01 = 0;
-			for (int l : listaItens.keySet()) 
-			{
-				diffInt01 = l - novaOrdem[l-1];
-				System.out.print(diffInt01 + ", ");
-				somaPrioridades[l-1] = novaOrdem[l-1] + somaPrioridades[l-1];
-			}
+//			for(int y = 3 + nmr; y < somaPrioridades.length; y++)
+//			{
+				System.out.println("\nDiferença pessoal do integrante " + nmr + ":");
+				int diffInt01 = 0;
+				for (int l : listaItens.keySet()) 
+				{
+					diffInt01 = l - novaOrdem[l-1];
+					System.out.print(diffInt01 + ", ");
+					somaPrioridades[l-1] = novaOrdem[l-1] + somaPrioridades[l-1];
+//					tableData[l][y] = Integer.toString(somaPrioridades[l-1]);
+				}
+//			}
 			
 			System.out.println("\n\nOrdem do integrante " + nmr);
 			for(String n : novaLista)
@@ -76,11 +81,38 @@ public class MainClass
 			}
 		}
 		
-		System.out.println("\nDiferença do grupo: ");
-		for(int l : listaItens.keySet())
+		for(int y = 0; y < somaPrioridades.length; y++)
 		{
-			somaPrioridades[l-1] = somaPrioridades[l-1] - l;
-			System.out.print(somaPrioridades[l-1] + ", ");
+			for (int z = 0; z < tableData[y].length; z++) 
+	    	{ 
+				tableData[z][y] = Integer.toString(somaPrioridades[z]);
+	    	} 
+			break;
 		}
+		for(int y = 2; y < somaPrioridades.length; y++)
+		{
+//			for (int z = 0; z < tableData[y].length; z++) 
+//	    	{ 
+				for(int l : listaItens.keySet())
+				{
+					tableData[l-1][y] = listaItens.get(l);
+				}
+//	    	} 
+			break;
+		}
+		
+		for(int y = 1; y < somaPrioridades.length; y++)
+		{
+			System.out.println("\nDiferença do grupo: ");
+			for(int l : listaItens.keySet())
+			{
+				somaPrioridades[l-1] = somaPrioridades[l-1] - l;
+				System.out.print(somaPrioridades[l-1] + ", ");
+				tableData[l-1][y] =  Integer.toString(somaPrioridades[l-1]);
+			}
+			break;
+		}
+		
+		new TableModel(tableData);
 	}  
 }  
