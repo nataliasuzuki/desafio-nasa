@@ -24,6 +24,13 @@ public class MainClass
 //		listaItens.put(13, "13) sinais luminosos que funcionam no vácuo");
 //		listaItens.put(14, "14) 1 kit de primeiros socorros");
 //		listaItens.put(15, "15) 1 transmissor receptor portátil, acionado por luz solar");
+		
+		//Table
+		/*Output: 
+		 * 0 1 2 
+		 * 1 2 3 
+		 * 2 3 4
+		 * [[0, 1, 2], [1, 2, 3], [2, 3, 4]]*/
 	    
 		System.out.println("Itens disponíveis: ");		
 	    for (String i : listaItens.values()) 
@@ -83,8 +90,10 @@ public class MainClass
 		
 		for(int y = 0; y < somaPrioridades.length; y++)
 		{
+			System.out.println("\nDecisão do grupo: ");
 			for (int z = 0; z < tableData[y].length; z++) 
 	    	{ 
+				System.out.print(somaPrioridades[z] + ", ");
 				tableData[z][y] = Integer.toString(somaPrioridades[z]);
 	    	} 
 			break;
@@ -103,7 +112,7 @@ public class MainClass
 		
 		for(int y = 1; y < somaPrioridades.length; y++)
 		{
-			System.out.println("\nDiferença do grupo: ");
+			System.out.println("\n\nDiferença do grupo: ");
 			for(int l : listaItens.keySet())
 			{
 				somaPrioridades[l-1] = somaPrioridades[l-1] - l;
